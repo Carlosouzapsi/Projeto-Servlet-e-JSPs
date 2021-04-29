@@ -1,6 +1,6 @@
-package Dominio;
+package dados;
 
-import dados.Conexao;
+import Dominio.Cliente;
 import java.sql.*;
 import java.util.*;
 

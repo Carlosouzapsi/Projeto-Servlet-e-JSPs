@@ -60,7 +60,7 @@ public class ClienteDAOJDBC {
             stmt = conn.prepareStatement(SQL_SELECT_BY_ID);
             stmt.setInt(1, cliente.getIdCliente());
             rs = stmt.executeQuery();
-            rs.absolute(1); //Posicionamento no primeiro registro encontrado
+            rs.next(); //Posicionamento no primeiro registro encontrado
             String nome = rs.getString("nome");
             String sobrenome = rs.getString("sobrenome");
             String email = rs.getString("email");

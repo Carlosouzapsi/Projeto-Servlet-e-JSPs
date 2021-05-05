@@ -30,7 +30,7 @@
                     </div>
                     <div class="form-group">
                         <label for="salario">Salário</label>
-                        <input type="number" class="form-control" name="salario" required>
+                        <input type="number" class="form-control" name="salario" required step="any">
                     </div>
                    
                 </div>

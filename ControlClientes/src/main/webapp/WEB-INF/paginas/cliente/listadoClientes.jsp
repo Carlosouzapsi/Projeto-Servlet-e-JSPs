@@ -26,7 +26,7 @@
                                     <td>${cliente.nome} ${cliente.sobrenome}</td>
                                     <td <fmt:formatNumber value="${cliente.salario}" type="currency"/>${cliente.salario}</td>
                                     <td>
-                                        <a href="${pageContext.request.contextPath}/ServletControlador?action=editar&idCliente=${cliente.idCliente}" class="btn btn-secondary">
+                                        <a href="${pageContext.request.contextPath}/ServletControlador?acao=editar&idCliente=${cliente.idCliente}" class="btn btn-secondary">
                                             <i class="fas fa-angle-double-right"></i>Editar
                                         </a>
                                     </td>

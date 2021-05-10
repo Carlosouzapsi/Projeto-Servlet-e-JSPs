@@ -19,6 +19,9 @@ public class ServletControlador extends HttpServlet {
                 case "editar":
                     this.editarCliente(request, response);
                     break;
+                case "eliminar":
+                    this.eliminarCliente(request, response);
+                    break;
                 default:
                     this.acaoDefault(request, response);
 
@@ -46,7 +49,7 @@ public class ServletControlador extends HttpServlet {
         }
         return salarioTotal;
     }
-    
+
     private void editarCliente(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //Recuperar o Id do Cliente:
         int idCliente = Integer.parseInt(request.getParameter("idCliente"));
@@ -55,6 +58,7 @@ public class ServletControlador extends HttpServlet {
         String jspEditar = "/WEB-INF/paginas/cliente/editarCliente.jsp";
         request.getRequestDispatcher(jspEditar).forward(request, response);
     }
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String acao = request.getParameter("acao");
@@ -75,7 +79,7 @@ public class ServletControlador extends HttpServlet {
         }
 
     }
-    
+
     private void inserirCliente(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //Recuperando os valores do formulário adicionar cliente:
         String nome = request.getParameter("nome");
@@ -118,6 +122,21 @@ public class ServletControlador extends HttpServlet {
         //modificar objeto na base de dados:
         int registrosModificados = new ClienteDAOJDBC().atualizar(cliente);
         System.out.println("registrosModificados = " + registrosModificados);
+
+        //Redirigimos a acao default:
+        this.acaoDefault(request, response);
+    }
+
+    private void eliminarCliente(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        //Recuperando os valores do formulário editar cliente:
+        int idCliente = Integer.parseInt(request.getParameter("idCliente"));
+       
+        //Criamos o objeto de cliente
+        Cliente cliente = new Cliente(idCliente);
+
+        //Eliminamos o objeto da base de dados:
+        int registrosModificados = new ClienteDAOJDBC().eliminar(cliente);
+        System.out.println("registrosEliminados = " + registrosModificados);
 
         //Redirigimos a acao default:
         this.acaoDefault(request, response);

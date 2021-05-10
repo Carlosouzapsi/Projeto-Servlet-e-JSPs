@@ -138,6 +138,7 @@ public class ClienteDAOJDBC {
         int rows = 0;
         try {
             conn = Conexao.getConnection();
+            stmt = conn.prepareStatement(SQL_DELETE);
             stmt.setInt(1, cliente.getIdCliente());
             
             rows = stmt.executeUpdate();
